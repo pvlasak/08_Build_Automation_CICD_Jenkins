@@ -8,7 +8,7 @@ repository to show the complete automated CI pipeline with Jenkins
     *docker run -p 8080:8080 -p 50000:50000 -d \
     -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts*
     Inital password for jenkins server is to be found in `/var/jenkins_home/secrets` in docker container. 
-- 
+- named volume `jenkins_home` is created to persist data 
 
 ### Install build tool NPM in Jenkins Container
 - Login docker container as root user: *docker exec -u 0 -it <container_id> bash*
