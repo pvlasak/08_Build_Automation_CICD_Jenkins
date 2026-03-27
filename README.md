@@ -19,3 +19,16 @@ repository to show the complete automated CI pipeline with Jenkins
 *bash nodesource_setup.sh*
 *apt install nodejs -y*
 
+### Docker in Jenkins
+- docker runtime file from virtual machine can be attached to a container as a new volume:
+*docker run -p 8080:8080 -p 50000:50000 -d \
+ -v jenkins_home:/var/jenkins_home \
+ -v /var/run/docker.sock:/var/run/docker.sock jenkins/jenkins:lts*
+
+- to execute docker command from jenkins container:
+    fetch latest version of docker:
+ *curl https://get.docker.com/ > dockerinstall && chmod 777 dockerinstall && ./dockerinstall*
+    
+- after login as root user the permissions on `/var/run/docker.sock` have to be changed to read-write for all.
+- after login as non-root user the docker command can be run
+- docker can be used in any build as any other linux command
