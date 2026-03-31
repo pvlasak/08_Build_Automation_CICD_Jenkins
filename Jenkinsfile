@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    tools (
+    tools {
         maven 'Maven3.9'
-    )
+    }
     stages {
         }
         stage('buildJarFile') {
