@@ -1,5 +1,9 @@
 def BuildApp() {
     echo('building the docker image...')
+    echo("Jenkins is running on the host ${JENKINS_URL}")
+    echo("Application files are fetched from ${GIT_URL}")
+    echo("Author of this application is ${GIT_AUTHOR_NAME}")
+    echo("Building a docker image version ${VERSION}")
 }
 
 def TestApp() {
