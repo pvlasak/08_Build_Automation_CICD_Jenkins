@@ -1,59 +1,26 @@
 def gv 
 pipeline {
     agent any
-    parameters {
-        booleanParam(name:'executeTest', defaultValue: true, description:'') 
-    }
-    environment {
-        DEVELOPER_NAME='Peter'
-    }
+    tools (
+        maven 'Maven3.9'
+    )
     stages {
-        stage("init") {
+        }
+        stage('buildJarFile') {
             steps {
-                script {
-                    gv = load "script.groovy"
-                }
+                echo "building the application"
+                sh "mvn package"
             }
         }
-        stage('build image') {
-            input {
-                message "Select application version"
-                ok "Done"
-                parameters {
-                    choice(name:'VERSION', choices:['1.1.0', '1.2.1', '1.3.0'], description:'')
-                }
-            }
+        stage('buildImage'){
             steps {
-                script {
-                    gv.BuildApp()
-                }
-            }
-        }
-        stage('test') {
-            when {
-                expression {params.executeTest}
-            }
-            steps {
-                script {
-                    gv.TestApp()
-                }
-            }
-        }
-        stage('deploy'){
-            input {
-                message "Select environment where to deploy application to"
-                ok "Done"
-                parameters {
-                    choice(name: "ONEENV", choices: ['dev', 'test', 'prod'], description: '')
-                    choice(name: "TWOENV", choices: ['dev', 'test', 'prod'], description: '')
-                }
-            }
-            steps {
-                script {
-                    gv.DeployApp()
+                echo ("building the docker image...")
+                withCredentials([usernamePassword(credentials: 'dockerhub-credentials', passwordVariable: 'PASSWORD', usernameVariable:'USER')]) {
+                    sh 'docker build -t petrdeveloper/demo-app:jma-1.2 .'
+                    sh 'echo $PASSWORD | docker login -u $USER --password-stdin'
+                    sh 'docker push petrdeveloper/demo-app:jma-1.2'
                 }
             }
          }
     }
-}
 
