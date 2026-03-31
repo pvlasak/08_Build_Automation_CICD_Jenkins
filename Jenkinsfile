@@ -12,14 +12,19 @@ pipeline {
                 }
             }
         }
-        stage('build jar') {
+        stage('test application') {
             steps {
                 script {
-                    gv.buildJarFile()
+                    gv.testApp()
                 }
             }
         }
         stage('build image'){
+            when {
+                expression {
+                    BRANCH_NAME == 'main'
+                }
+            }
             steps {
                 script {
                     gv.buildImage()
@@ -27,6 +32,11 @@ pipeline {
                 }
             }
          stage('deploy app') {
+            when {
+                expression {
+                    BRANCH_NAME == 'main'
+                }
+            }
             steps {
                 script {
                     gv.deployApp()
