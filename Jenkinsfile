@@ -31,6 +31,14 @@ pipeline {
             }
         }
         stage('deploy'){
+            input {
+                message "Select environment where to deploy application to"
+                ok "Done"
+                parameters {
+                    choice(name: "environment-one", choices: ['dev', 'test', 'prod'], description: '')
+                    choice(name: "environment-two", choices: ['dev', 'test', 'prod'], description: '')
+                }
+            }
             steps {
                 script {
                     gv.DeployApp()

@@ -10,7 +10,8 @@ def TestApp() {
 }
 
 def DeployApp() {
-    echo('deploying the application...')
+    echo("deploying the application on ${environment-one}...")
+    echo("deploying the application on ${environment-two}...")
 }
 
 return this
