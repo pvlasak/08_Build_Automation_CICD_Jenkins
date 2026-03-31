@@ -4,27 +4,29 @@ pipeline {
 
     stages {
         stage("init") {
-            scripts {
-                gv = load "script.groovy"
+            steps {
+                script {
+                    gv = load "script.groovy"
+                }
             }
         }
         stage('build image') {
             steps {
-                scripts {
+                script {
                     gv.BuildApp()
                 }
             }
         }
         stage('test') {
             steps {
-                scripts {
+                script {
                     gv.TestApp()
                 }
             }
         }
         stage('deploy'){
             steps {
-                scripts {
+                script {
                     gv.DeployApp()
                 }
             }
