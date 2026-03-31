@@ -9,6 +9,7 @@ def buildImage() {
         sh 'docker build -t petrdeveloper/demo-app:jma-1.2 .'
         sh 'echo $PASSWORD | docker login -u $USER --password-stdin'
         sh 'docker push petrdeveloper/demo-app:jma-1.2'
+    }
 }
 
 def deployApp() {
