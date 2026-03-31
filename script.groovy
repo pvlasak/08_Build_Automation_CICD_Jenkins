@@ -1,17 +1,19 @@
-def BuildApp() {
-    echo("Pipepline is initiated by developer ${DEVELOPER_NAME}")
-    echo("Jenkins is running on the host ${JENKINS_URL}")
-    echo("Application files are fetched from ${GIT_URL}")
-    echo("Building a docker image version ${VERSION}")
+def buildJarFile() {
+    echo "building the application"
+    sh "mvn package"
 }
 
-def TestApp() {
-    echo('testing the app...')
+def buildImage() {
+    echo ("building the docker image...")
+    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'PASSWORD', usernameVariable:'USER')]) {
+        sh 'docker build -t petrdeveloper/demo-app:jma-1.2 .'
+        sh 'echo $PASSWORD | docker login -u $USER --password-stdin'
+        sh 'docker push petrdeveloper/demo-app:jma-1.2'
 }
 
-def DeployApp() {
-    echo("deploying the application on ${ONEENV}...")
-    echo("deploying the application on ${TWOENV}...")
+def deployApp() {
+    echo("deploying the application....")
+
 }
 
 return this

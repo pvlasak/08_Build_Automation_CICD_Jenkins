@@ -1,25 +1,29 @@
+def gv
 pipeline {
     agent any
     tools {
         maven 'Maven3.9'
     }
     stages {
-        stage('buildJarFile') {
+        scripts {
+            gv = load 'script.groovy'
+        }
+        stage('build jar') {
             steps {
-                echo "building the application"
-                sh "mvn package"
+                gv.buildJarFile()
             }
         }
-        stage('buildImage'){
+        stage('build image'){
             steps {
-                echo ("building the docker image...")
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'PASSWORD', usernameVariable:'USER')]) {
-                    sh 'docker build -t petrdeveloper/demo-app:jma-1.2 .'
-                    sh 'echo $PASSWORD | docker login -u $USER --password-stdin'
-                    sh 'docker push petrdeveloper/demo-app:jma-1.2'
+                gv.buildImage()
                 }
             }
-         }
+         stage('deploy app') {
+            steps {
+                gv.deployApp()
+                }
+            }
+        }
     }
-}
+
 
