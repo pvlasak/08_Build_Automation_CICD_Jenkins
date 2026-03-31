@@ -4,6 +4,9 @@ pipeline {
     parameters {
         booleanParam(name:'executeTest', defaultValue: true, description:'') 
     }
+    environment {
+        DEVELOPER_NAME: 'Peter'
+    }
     stages {
         stage("init") {
             steps {
