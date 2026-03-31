@@ -4,7 +4,6 @@ pipeline {
         maven 'Maven3.9'
     }
     stages {
-        }
         stage('buildJarFile') {
             steps {
                 echo "building the application"
@@ -22,4 +21,5 @@ pipeline {
             }
          }
     }
+}
 
