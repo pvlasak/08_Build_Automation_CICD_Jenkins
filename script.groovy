@@ -1,5 +1,5 @@
 def BuildApp() {
-    echo("Pipepline is initiated by developer ${DEVELOER_NAME}")
+    echo("Pipepline is initiated by developer ${DEVELOPER_NAME}")
     echo("Jenkins is running on the host ${JENKINS_URL}")
     echo("Application files are fetched from ${GIT_URL}")
     echo("Building a docker image version ${VERSION}")
