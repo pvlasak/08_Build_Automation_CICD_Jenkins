@@ -24,7 +24,7 @@ pipeline {
         stage('build image'){
             steps {
                 script {
-                    BuildImage "petrdeveloper/demo-app:jma-2.0"
+                    BuildImage('petrdeveloper/demo-app:jma-2.0')
                     }
                 }
             }
