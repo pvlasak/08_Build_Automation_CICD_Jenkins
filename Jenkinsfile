@@ -1,5 +1,8 @@
 #!/user/bin/env groovy
-@Library('jenkins-shared-library')
+library identifier: 'jenkins-shared-library@main', retriever: moderSCM(
+    [$class: 'GitSCMSource',
+     remote: 'https://github.com/pvlasak/08_Build_Automation_CICD_Jenkins.git',
+     credentialsId: 'github-credentials'])
 def gv
 pipeline {
     agent any
