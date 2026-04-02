@@ -1,7 +1,7 @@
 #!/user/bin/env groovy
 library identifier: 'jenkins-shared-library@main', retriever: modernSCM(
     [$class: 'GitSCMSource',
-     remote: 'https://github.com/pvlasak/08_Build_Automation_CICD_Jenkins.git',
+     remote: 'https://github.com/pvlasak/jenkins-shared-library.git',
      credentialsId: 'github-credentials'])
 def gv
 pipeline {
