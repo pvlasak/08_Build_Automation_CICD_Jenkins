@@ -21,10 +21,12 @@ pipeline {
                 }
             }
         }
-        stage('build image'){
+        stage('build and push image'){
             steps {
                 script {
                     buildImage('petrdeveloper/demo-app:jma-2.0')
+                    dockerLogin()
+                    dockerPush('petrdeveloper/demo-app:jma-2.0')
                     }
                 }
             }

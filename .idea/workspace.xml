@@ -64,12 +64,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1775071404310</updated>
-      <workItem from="1775071405484" duration="5398000" />
+      <workItem from="1775071405484" duration="6269000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="Jenkinsfile" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
