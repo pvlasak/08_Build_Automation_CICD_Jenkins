@@ -17,14 +17,14 @@ pipeline {
         stage('build jar') {
             steps {
                 script {
-                    BuildJar()
+                    buildJar()
                 }
             }
         }
         stage('build image'){
             steps {
                 script {
-                    BuildImage('petrdeveloper/demo-app:jma-2.0')
+                    buildImage('petrdeveloper/demo-app:jma-2.0')
                     }
                 }
             }
