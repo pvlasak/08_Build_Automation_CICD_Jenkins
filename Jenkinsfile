@@ -28,6 +28,7 @@ pipeline {
             steps {
                 script {
                     echo "starting build image and pushing to repository"
+                    echo "additional text to test automatic pipeline triggering.."                    
                     buildImage('petrdeveloper/demo-app:jma-2.0')
                     dockerLogin()
                     dockerPush('petrdeveloper/demo-app:jma-2.0')
