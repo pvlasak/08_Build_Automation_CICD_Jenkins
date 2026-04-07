@@ -27,6 +27,7 @@ pipeline {
         stage('build and push image'){
             steps {
                 script {
+                    echo "starting build image and pushing to repository"
                     buildImage('petrdeveloper/demo-app:jma-2.0')
                     dockerLogin()
                     dockerPush('petrdeveloper/demo-app:jma-2.0')
