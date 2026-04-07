@@ -5,31 +5,29 @@ pipeline {
         maven 'Maven3.9'
     }
     stages {
-        stage("init") {
-            steps {
-                script {
-                    gv = load "script.groovy"
-                }
-            }
-        }
         stage('build jar') {
             steps {
                 script {
-                    gv.buildJarFile()
+                    sh "mvn package"
                 }
             }
         }
         stage('build image'){
             steps {
                 script {
-                    gv.buildImage()
+                        echo ("building the docker image...")
+                        withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'PASSWORD', usernameVariable:'USER')]) {
+                            sh 'docker build -t petrdeveloper/demo-app:jma-1.2 .'
+                            sh 'echo $PASSWORD | docker login -u $USER --password-stdin'
+                            sh 'docker push petrdeveloper/demo-app:jma-1.2'
+                        }
                     }
                 }
             }
          stage('deploy app') {
             steps {
                 script {
-                    gv.deployApp()
+                    echo("deploying the application....")
                     }
                 }
             }
