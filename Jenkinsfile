@@ -1,6 +1,9 @@
 def gv
 pipeline {
     agent any
+    tools {
+       maven 'Maven3.9'
+    }
     stages {
         stage('increment version') {
             steps {
