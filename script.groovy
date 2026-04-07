@@ -1,6 +1,5 @@
 def buildJarFile() {
     echo "building the application"
-    sh "mvn package"
 }
 
 def buildImage() {
@@ -9,7 +8,6 @@ def buildImage() {
 
 def deployApp() {
     echo("deploying the application....")
-
 }
 
 return this
