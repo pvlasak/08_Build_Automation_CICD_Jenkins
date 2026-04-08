@@ -43,6 +43,23 @@ pipeline {
                     }
                 }
             }
-        }
+         stage('commit version update') {
+                    steps {
+                        script {
+                            withCredentials([usernamePassword(credentialsId: 'github-credentials', passwordVariable: 'PASSWORD', usernameVariable:'USER')]) {
+                                sh 'git config user.email "petr.development40@gmail.com"'
+                                sh 'git config user.name "jenkins"'
+                                sh 'git status'
+                                sh 'git branch'
+                                sh 'git config --list'
+                                sh 'git remote set-url origin https://{USER}:{PASSWORD}@github.com/pvlasak/08_Build_Automation_CICD_Jenkins.git'
+                                sh 'git add .'
+                                sh 'git commit -m "ci: version bump"'
+                                sh 'git push origin HEAD:increment_version'
+                            }
+                        }
+                    }
+         }
     }
+}
 
