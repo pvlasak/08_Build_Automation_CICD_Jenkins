@@ -20,7 +20,7 @@ pipeline {
         stage('build jar') {
             steps {
                 script {
-                    sh "mvn package"
+                    sh "mvn clean package"
                 }
             }
         }
@@ -47,7 +47,7 @@ pipeline {
                     steps {
                         script {
                             withCredentials([usernamePassword(credentialsId: 'github-username-token', passwordVariable: 'TOKEN', usernameVariable:'USER')]) {
-                                sh 'git config user.email "petr.development40@gmail.com"'
+                                sh 'git config user.email "jenkins@example.com'
                                 sh 'git config user.name "jenkins"'
                                 sh 'git status'
                                 sh 'git branch'
