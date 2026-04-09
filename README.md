@@ -65,5 +65,21 @@ repository to show the complete automated CI pipeline with Jenkins
     8. *steps {}*
     9. *script{}* - functions inside a groovy script can be called inside a script block in Jenkinsfile : *script {gv.DeployApp()}*
     10. Login credentials configurated and saved on the Jenkins server can be binded to variables in a Jenkinsfile by following functionality:
-        *withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'PASSWORD', usernameVariable:'USER')]) {
+
+        *withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: *'PASSWORD', usernameVariable:'USER')]) {
         }*
+
+### Multibranch Pipeline
+- execute specific pipeline for each branch
+- *when* expression may help to decide for which branch the specific stage to be executed. 
+- build configuration is given by Jenkinsfile, Jenkinsfile is automatically searched in the git repository for each branch, if not found the pipeline is not executed. 
+
+### Jenkins Shared Library
+- git repository for shared library has to be established. 
+- Jenkinsfile has defined shared library and uses functions inside the `vars` directory as an interface between Jenkinsfile and classes available in `src` package. Functions inside the `vars` are called from Jenkinsfile. 
+- Shared library can be set globally in the Jenkins setup or as project scoped library. Library has to be connected in the Jenkinsfile:
+    *library identifier: 'jenkins-shared-library@main', retriever: modernSCM(*
+    *[$class: 'GitSCMSource',*
+    *remote: 'URL to Git Repo',*
+    *credentialsId: 'github-credentials'])*
+
