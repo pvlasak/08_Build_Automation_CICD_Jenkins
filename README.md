@@ -65,8 +65,9 @@ repository to show the complete automated CI pipeline with Jenkins
     8. *steps {}*
     9. *script{}* - functions inside a groovy script can be called inside a script block in Jenkinsfile : *script {gv.DeployApp()}*
     10. Login credentials configurated and saved on the Jenkins server can be binded to variables in a Jenkinsfile by following functionality:
-        *withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: *'PASSWORD', usernameVariable:'USER')]) {*
-        *}*
+
+        *withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: *'PASSWORD', usernameVariable:'USER')]) {
+        }*
 
 ### Multibranch Pipeline
 - execute specific pipeline for each branch
