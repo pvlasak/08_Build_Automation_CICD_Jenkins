@@ -21,7 +21,7 @@ repository to show the complete automated CI pipeline with Jenkins
 - on Nodesource `https://deb.nodesource.com/` - debian binaries for NodeJS can be downloaded. on `https://github.com/nodesource/distributions` instructions how to iinstall binaries can be found: 
 *apt update*
 *apt install curl*
-*curl -fsSL https://deb.nodesource.com/setup_23.x -o nodesource_setup.sh*
+*curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh*
 *bash nodesource_setup.sh*
 *apt install nodejs -y*
 
